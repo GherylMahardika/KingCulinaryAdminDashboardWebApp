@@ -1,0 +1,108 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>King Culinary - Login</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@100;300;400;500;600;700;900&display=swap"
+        rel="stylesheet">
+    <script src="https://unpkg.com/feather-icons"></script>
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+    <link rel="stylesheet" href="css/login.css">
+    <link rel="icon" href="img/King_Culinary_Logo-removebg-preview copy.png" type="image/x-icon">
+</head>
+
+<body>
+    <div class="wrap-login">
+        <div class="login">
+            <form id="login-form" class="login-form">
+                <h1 class="login-title">Login</h1>
+                <div class="login-content">
+                    <div class="login-box">
+                        <div class="login-box-input">
+                            <i data-feather="user"></i>
+                            <input type="text" required class="login-input" id="login-username" placeholder="Username">
+                        </div>
+                        <span id="username-error" class="error-message"></span>
+                    </div>
+                    <div class="login-box">
+                        <div class="login-box-input">
+                            <i data-feather="lock"></i>
+                            <input type="password" required class="login-input" id="login-pass" placeholder="Password">
+                        </div>
+                        <span id="password-error" class="error-message"></span>
+                    </div>
+                </div>
+                <button type="submit" class="login-button">Login</button>
+            </form>
+        </div>
+    </div>
+    <script>
+        feather.replace()
+    </script>
+    <script type="module">
+        // Import the functions you need from the SDKs you need
+        import { initializeApp } from "https://www.gstatic.com/firebasejs/10.12.2/firebase-app.js";
+        import { getAuth, signInWithEmailAndPassword } from "https://www.gstatic.com/firebasejs/10.12.2/firebase-auth.js";
+        import { getFirestore, doc, getDoc } from "https://www.gstatic.com/firebasejs/10.12.2/firebase-firestore.js";
+
+        // Firebase configuration
+        const firebaseConfig = {
+            apiKey: "AIzaSyA2fKRX50046RzWGn4vkgxrLudMabAABlA",
+            authDomain: "kingculinarydb.firebaseapp.com",
+            databaseURL: "https://kingculinarydb-default-rtdb.asia-southeast1.firebasedatabase.app",
+            projectId: "kingculinarydb",
+            storageBucket: "kingculinarydb.appspot.com",
+            messagingSenderId: "1096190427358",
+            appId: "1:1096190427358:web:e3a3e53b14d5b4e18f0d14"
+        };
+
+        // Initialize Firebase
+        const app = initializeApp(firebaseConfig);
+        const auth = getAuth(app);
+        const db = getFirestore(app);
+
+        document.getElementById("login-form").addEventListener("submit", async function (event) {
+            event.preventDefault();
+
+            const email = document.getElementById("login-username").value;
+            const password = document.getElementById("login-pass").value;
+
+            console.log("Email:", email);
+            console.log("Password:", password);
+
+            try {
+                const userCredential = await signInWithEmailAndPassword(auth, email, password);
+                const user = userCredential.user;
+                console.log("User:", user);
+
+                // Fetch user role from Firestore
+                const userDocRef = doc(db, "users", user.uid);
+                console.log("Fetching user data for:", user.uid);
+                const userDoc = await getDoc(userDocRef);
+                
+                if (userDoc.exists()) {
+                    console.log("User data found:", userDoc.data());
+                    const userData = userDoc.data();
+                    if (userData.role === "admin") {
+                        localStorage.setItem("adminUsername", userData.email);
+                        window.location.href = "dashboard";
+                    } else {
+                        alert("You do not have admin privileges.");
+                    }
+                } else {
+                    console.error("User data not found for UID:", user.uid);
+                    alert("User data not found.");
+                }
+            } catch (error) {
+                console.error("Error logging in:", error);
+                alert("Invalid username or password.");
+            }
+        });
+    </script>
+</body>
+
+</html>

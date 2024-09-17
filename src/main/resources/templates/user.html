@@ -1,0 +1,604 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+  <!-- Boxicons -->
+  <link href='https://unpkg.com/boxicons@2.0.9/css/boxicons.min.css' rel='stylesheet'>
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet"
+    integrity="sha384-QWTKZyjpPEjISv5WaRU9OFeRpok6YctnYmDr5pNlyT2bRjXh0JMhjY6hW+ALEwIH" crossorigin="anonymous">
+  <link rel="stylesheet" href="css/style.css">
+  <link rel="icon" href="img/King_Culinary_Logo-removebg-preview copy.png" type="image/x-icon">
+
+  <title>AdminHub</title>
+</head>
+
+<body>
+
+
+      <!-- SIDEBAR -->
+    <section id="sidebar">
+      <a href="#" class="brand">
+          <i class='bx bxs-smile'></i>
+          <span class="text">KING CULINARY</span>
+      </a>
+  <a href="#" class="img-brand">
+          <img src="img/King_Culinary_Logo-removebg-preview.png">
+      </a>
+      <ul class="side-menu top">
+          <li>
+              <a href="dashboard" class="no-active">
+                  <i class='bx bxs-dashboard'></i>
+                  <span class="text">Dashboard</span>
+              </a>
+          </li>
+          <li>
+              <a href="categories" class="no-active">
+                  <i class='bx bxs-book-content'></i>
+                  <span class="text">Categories</span>
+              </a>
+          </li>
+          <li>
+              <a href="foodRecipe" class="no-active">
+                  <i class='bx bxs-food-menu'></i>
+                  <span class="text">Food Recipe</span>
+              </a>
+          </li>
+          <li>
+              <a href="comment" class="no-active">
+                  <i class='bx bxs-comment'></i>
+                  <span class="text">Comment</span>
+              </a>
+          </li>
+          <li>
+              <a href="user" class="no-active">
+                  <i class='bx bxs-user'></i>
+                  <span class="text">User</span>
+              </a>
+          </li>
+          <li>
+              <a href="resetPassword" class="no-active">
+                  <i class='bx bxs-user-circle'></i>
+                  <span class="text">Change Password </span>
+              </a>
+          </li>
+      </ul>
+      <ul class="side-menu">
+          <li>
+              <a href="login" class="logout">
+                  <i class='bx bx-log-in'></i>
+                  <span class="text">Logout</span>
+              </a>
+          </li>
+      </ul>
+  </section>
+<!-- SIDEBAR -->
+
+
+
+  <!-- CONTENT -->
+  <section id="content">
+    <!-- NAVBAR -->
+    <nav>
+      <i class='bx bx-menu'></i>
+      <div class="hiAdmin">
+        <h5>Hi,</h5>
+        <h5 class="AdminName">Admin</h5>
+      </div>
+    </nav>
+    <!-- NAVBAR -->
+
+    <!-- MAIN -->
+    <main>
+      <div class="head-title">
+        <div class="left">
+          <h1>User</h1>
+          <ul class="breadcrumb">
+            <li>
+              <button type="button" class="add-btn" data-bs-toggle="modal" data-bs-target="#addUserModal">
+                Add User
+              </button>
+
+              <!-- Modal add -->
+              <!-- Modal add -->
+              <div class="modal fade" id="addUserModal" tabindex="-1" aria-labelledby="userModalLabel"
+                aria-hidden="true">
+                <div class="modal-dialog">
+                  <div class="modal-content">
+                    <div class="modal-header">
+                      <h1 class="modal-title fs-5" id="userModalLabel">Add User</h1>
+                      <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                    </div>
+                    <div class="modal-body">
+                      <form id="user-form">
+                        <!-- <div class="mb-3">
+                          <label for="user-id" class="form-label">User ID</label>
+                          <input type="text" class="form-control" id="user-id" required>
+                          <div id="user-id-error" class="text-danger"></div>
+                        </div> -->
+                        <div class="mb-3">
+                          <label for="username" class="form-label">Username</label>
+                          <input type="text" class="form-control" id="username" required>
+                          <div id="username-error" class="text-danger"></div>
+                        </div>
+                        <div class="mb-3">
+                          <label for="email" class="form-label">Email</label>
+                          <input type="email" class="form-control" id="email" required>
+                          <div id="email-error" class="text-danger"></div>
+                        </div>
+                        <div class="mb-3">
+                          <label for="password" class="form-label">Password</label>
+                          <input type="password" class="form-control" id="password" required>
+                          <div id="password-error" class="text-danger"></div>
+                        </div>
+                        <div class="mb-3">
+                          <label for="profile-picture" class="form-label">Profile Picture</label>
+                          <input type="file" class="form-control" id="profile-picture" required>
+                          <div id="profile-picture-error" class="text-danger"></div>
+                        </div>
+                        <div class="mb-3">
+                          <label for="bio" class="form-label">Bio</label>
+                          <textarea class="form-control" id="bio" rows="3" required></textarea>
+                          <div id="bio-error" class="text-danger"></div>
+                        </div>
+                        <!-- <div class="mb-3">
+                          <label for="created-at" class="form-label">Created At</label>
+                          <input type="date" class="form-control" id="created-at" required>
+                          <div id="created-at-error" class="text-danger"></div>
+                        </div> -->
+                      </form>
+                    </div>
+                    <div class="modal-footer">
+                      <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+                      <button id="buttonAdd" type="button" class="btn btn-primary">Save changes</button>
+                    </div>
+                  </div>
+                </div>
+              </div>
+
+              <!-- Edit User Modal -->
+              <div class="modal fade" id="editUserModal" tabindex="-1" aria-labelledby="editUserModalLabel" aria-hidden="true">
+                <div class="modal-dialog">
+                  <div class="modal-content">
+                    <div class="modal-header">
+                      <h5 class="modal-title" id="editUserModalLabel">Edit User</h5>
+                      <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                    </div>
+                    <div class="modal-body">
+                      <form>
+                          <!-- //id input   -->
+                          <input type="hidden" class="form-control" id="edit-user-id" readonly>
+                        
+                        <div class="mb-3">
+                          <label for="edit-username" class="form-label">Username</label>
+                          <input type="text" class="form-control" id="edit-username">
+                        </div>
+                        <div class="mb-3">
+                          <label for="edit-email" class="form-label">Email</label>
+                          <input type="email" class="form-control" id="edit-email">
+                        </div>
+                        <div class="mb-3">
+                          <label for="edit-password" class="form-label">Password</label>
+                          <input type="password" class="form-control" id="edit-password">
+                        </div>
+                        <div class="mb-3">
+                          <label for="edit-profile-picture" class="form-label">Profile Picture</label>
+                          <img id="edit-existing-profile-picture" src="" alt="Existing Profile Picture" style="display: none; width: 150px; height: 150px;">
+                          <input type="file" class="form-control" id="edit-profile-picture">
+                        </div>
+                        <div class="mb-3">
+                          <label for="edit-bio" class="form-label">Bio</label>
+                          <input type="text" class="form-control" id="edit-bio">
+                        </div>
+                        <!-- <div class="mb-3">
+                          <label for="edit-created-at" class="form-label">Created At</label>
+                          <input type="date" class="form-control" id="edit-created-at">
+                        </div> -->
+                      </form>
+                    </div>
+                    <div class="modal-footer">
+                      <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+                      <button type="button" class="btn btn-primary" id="buttonEdit">Save changes</button>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </li>
+          </ul>
+        </div>
+      </div>
+
+      <div class="table-data">
+        <div class="order">
+          <div class="head">
+            <h3>User</h3>
+            <div class="search-wrapper">
+              <input type="text" id="search-input" placeholder="Search ">
+              <i class='bx bx-search'></i>
+            </div>
+          </div>
+          <table>
+            <thead>
+              <tr>
+                <th>User ID</th>
+                <th>Username</th>
+                <th>Email</th>
+                <th>Password</th>
+                <th>Profile Picture</th>
+                <th>Bio</th>
+                <th>Created At</th>
+                <th>Actions</th>
+              </tr>
+            </thead>
+            <tbody id="userTBody">
+            </tbody>
+          </table>
+        </div>
+      </div>
+    </main>
+    <!-- MAIN -->
+  </section>
+  <!-- CONTENT -->
+
+  <script src="https://cdn.jsdelivr.net/npm/firebase@9.0.1/firebase-app.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/firebase@9.0.1/firebase-database.js"></script>
+  <script src="https://www.gstatic.com/firebasejs/10.12.2/firebase-storage.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"
+    integrity="sha384-YvpcrYf0tY3lHB60NNkmXc5s9fDVZLESaAA55NDzOxhy9GkcIdslK1eN7N6jIeHz"
+    crossorigin="anonymous"></script>
+  <script src="js/script.js"></script>
+  <script type="module">
+      // Import the functions you need from the SDKs you need
+      import { initializeApp } from "https://www.gstatic.com/firebasejs/10.12.2/firebase-app.js";
+      import { getDatabase, ref, set, get, child, update, remove, push, serverTimestamp } from "https://www.gstatic.com/firebasejs/10.12.2/firebase-database.js";
+      import { getStorage, ref as storageRef, uploadBytes, getDownloadURL } from "https://www.gstatic.com/firebasejs/10.12.2/firebase-storage.js";
+
+      // Firebase configuration
+      const firebaseConfig = {
+          apiKey: "AIzaSyA2fKRX50046RzWGn4vkgxrLudMabAABlA",
+          authDomain: "kingculinarydb.firebaseapp.com",
+          databaseURL: "https://kingculinarydb-default-rtdb.asia-southeast1.firebasedatabase.app",
+          projectId: "kingculinarydb",
+          storageBucket: "kingculinarydb.appspot.com",
+          messagingSenderId: "1096190427358",
+          appId: "1:1096190427358:web:e3a3e53b14d5b4e18f0d14"
+      };
+
+      // Initialize Firebase
+      const app = initializeApp(firebaseConfig);
+      const database = getDatabase(app);
+      const storage = getStorage(app);
+
+      // Add user
+      document.getElementById("buttonAdd").addEventListener("click", function () {
+          let username = document.getElementById('username').value;
+          let email = document.getElementById('email').value;
+          let password = document.getElementById('password').value;
+          let bio = document.getElementById('bio').value;
+          // let createdAt = document.getElementById('created-at').value;
+          let profilePicture = document.getElementById('profile-picture').files[0];
+
+          let isValid = validateForm(username, email, password, bio, profilePicture);
+
+          if (isValid) {
+              const newUserRef = push(ref(database, "user/"));
+
+              if (profilePicture) {
+                  const storageReference = storageRef(storage, 'profilePictures/' + newUserRef.key);
+                  uploadBytes(storageReference, profilePicture).then((snapshot) => {
+                      getDownloadURL(snapshot.ref).then((url) => {
+                          set(newUserRef, {
+                              username: username,
+                              email: email,
+                              password: password,
+                              profilePicture: url, // Save the URL
+                              bio: bio,
+                              createdAt: serverTimestamp()
+                          }).then(() => {
+                              alert("User Successfully Added!");
+                              getAllData();
+                          }).catch((error) => {
+                              alert("Failed to add user!");
+                              console.log(error);
+                          });
+                      });
+                  }).catch((error) => {
+                      alert("Failed to upload profile picture!");
+                      console.log(error);
+                  });
+              } else {
+                  set(newUserRef, {
+                      username: username,
+                      email: email,
+                      password: password,
+                      bio: bio,
+                      createdAt: serverTimestamp()
+                  }).then(() => {
+                      alert("User Successfully Added!");
+                      getAllData();
+                  }).catch((error) => {
+                      alert("Failed to add user!");
+                      console.log(error);
+                  });
+              }
+
+              const modal = bootstrap.Modal.getInstance(document.getElementById('addUserModal'));
+              modal.hide();
+          }
+      });
+
+
+      //edit button funtion
+      document.getElementById("buttonEdit").addEventListener("click", function () {
+        let uid = document.getElementById('edit-user-id').value;
+        let username = document.getElementById('edit-username').value;
+        let email = document.getElementById('edit-email').value;
+        let password = document.getElementById('edit-password').value;
+        let bio = document.getElementById('edit-bio').value;
+        // let createdAt = document.getElementById('edit-created-at').value;
+        let profilePicture = document.getElementById('edit-profile-picture').files[0]; // Get the file
+
+        let isValid = validateForm(username, email, password, bio, profilePicture);
+
+        if (isValid) {
+            const userRef = ref(database, "user/" + uid);
+
+            if (profilePicture) {
+                const storageReference = storageRef(storage, 'profilePictures/' + uid);
+                uploadBytes(storageReference, profilePicture).then((snapshot) => {
+                    getDownloadURL(snapshot.ref).then((url) => {
+                        update(userRef, {
+                            username: username,
+                            email: email,
+                            password: password,
+                            profilePicture: url, // Save the URL
+                            bio: bio
+                        }).then(() => {
+                            alert("User Successfully Updated!");
+                            getAllData();
+                        }).catch((error) => {
+                            alert("Failed to update user!");
+                            console.log(error);
+                        });
+                    });
+                }).catch((error) => {
+                    alert("Failed to upload profile picture!");
+                    console.log(error);
+                });
+            } else {
+                // Update without changing the profile picture
+                update(userRef, {
+                    username: username,
+                    email: email,
+                    password: password,
+                    bio: bio
+                }).then(() => {
+                    alert("User Successfully Updated!");
+                    getAllData();
+                }).catch((error) => {
+                    alert("Failed to update user!");
+                    console.log(error);
+                });
+            }
+
+            const modal = bootstrap.Modal.getInstance(document.getElementById('editUserModal'));
+            modal.hide();
+        }
+    });
+
+
+      // Validation function
+      function validateForm(username, email, password, bio, profilePicture) {
+          let isValid = true;
+
+          if (!username) {
+              document.getElementById('username-error').innerText = "Username is required.";
+              isValid = false;
+          } else {
+              document.getElementById('username-error').innerText = "";
+          }
+
+          if (!email) {
+              document.getElementById('email-error').innerText = "Email is required.";
+              isValid = false;
+          } else {
+              document.getElementById('email-error').innerText = "";
+          }
+
+          if (!password) {
+              document.getElementById('password-error').innerText = "Password is required.";
+              isValid = false;
+          } else {
+              document.getElementById('password-error').innerText = "";
+          }
+
+          if (!bio) {
+              document.getElementById('bio-error').innerText = "Bio is required.";
+              isValid = false;
+          } else {
+              document.getElementById('bio-error').innerText = "";
+          }
+
+          // if (!createdAt) {
+          //     document.getElementById('created-at-error').innerText = "Created date is required.";
+          //     isValid = false;
+          // } else {
+          //     document.getElementById('created-at-error').innerText = "";
+          // }
+
+          return isValid;
+      }
+
+      // Delete user
+      function deleteUser(uid) {
+          remove(ref(database, "user/" + uid)).then(() => {
+              // Data deleted successfully
+              alert("User Successfully Deleted!");
+              getAllData(); // Refresh the table data
+          }).catch((error) => {
+              alert("Failed to delete user!");
+              console.log(error);
+          });
+      }
+
+      // Add user Table Item
+      function addUserTableItem(uid, username, email, password, profilePicture, bio, createdAt) {
+        let trow = document.createElement("tr");
+        let td1 = document.createElement("td");
+        let td2 = document.createElement("td");
+        let td3 = document.createElement("td");
+        let td4 = document.createElement("td");
+        let td5 = document.createElement("td");
+        let td6 = document.createElement("td");
+        let td7 = document.createElement("td");
+        let td8 = document.createElement("td");
+
+        // Display data in table cells
+        td1.innerHTML = uid;  // Display the uid
+        td2.innerHTML = username;
+        td3.innerHTML = email;
+        td4.innerHTML = password;
+        td5.innerHTML = `<img src="${profilePicture}" alt="Profile Picture" style="width: 50px; height: 50px;">`;
+        td6.innerHTML = bio;
+        td7.innerHTML = createdAt;
+
+        // Create the Edit button
+        let editButton = document.createElement("button");
+        editButton.innerHTML = "Edit";
+        editButton.classList.add("btn-edit");
+        editButton.setAttribute("data-bs-toggle", "modal");
+        editButton.setAttribute("data-bs-target", "#editUserModal");
+        editButton.setAttribute("data-uid", uid);
+        editButton.onclick = function () {
+            document.getElementById('edit-user-id').value = uid;
+            document.getElementById('edit-username').value = username;
+            document.getElementById('edit-email').value = email;
+            document.getElementById('edit-password').value = password;
+            document.getElementById('edit-bio').value = bio;
+            document.getElementById('edit-created-at').value = createdAt;
+            document.getElementById('edit-profile-picture').value = '';
+            document.getElementById('edit-profile-picture-preview').src = profilePicture || '';
+        };
+
+        // Create the Delete button
+        let deleteButton = document.createElement("button");
+        deleteButton.innerHTML = "Delete";
+        deleteButton.classList.add("btn-del");
+        deleteButton.setAttribute("data-uid", uid);
+        deleteButton.onclick = function () {
+            if (confirm("Are you sure you want to delete this user?")) {
+                deleteUser(uid);
+                trow.remove();
+            }
+        };
+
+        // Append buttons to td8
+        td8.appendChild(editButton);
+        td8.appendChild(deleteButton);
+
+        // Append all tds to trow
+        trow.appendChild(td1);
+        trow.appendChild(td2);
+        trow.appendChild(td3);
+        trow.appendChild(td4);
+        trow.appendChild(td5);
+        trow.appendChild(td6);
+        trow.appendChild(td7);
+        trow.appendChild(td8);
+
+        // Append trow to userTBody
+        document.getElementById("userTBody").appendChild(trow);
+    }
+
+
+
+
+      // Add All users to Table
+      function addAllUserTable(User) {
+        User.sort((a, b) => new Date(b.createdAt) - new Date(a.createdAt));
+        document.getElementById("userTBody").innerHTML = "";
+        User.forEach(element => {
+            addUserTableItem(element.uid, element.username, element.email, element.password, element.profilePicture, element.bio, element.createdAt);
+        });
+    }
+
+
+      // Fetch All users from Firebase
+      function getAllData() {
+        const dbref = ref(database);
+        get(child(dbref, "user")).then((snapshot) => {
+            if (snapshot.exists()) {
+                var user = [];
+                snapshot.forEach(childSnapshot => {
+                    let data = childSnapshot.val();
+                    // Check if uid exists, if not use the key as uid
+                    if (!data.uid) {
+                        data.uid = childSnapshot.key;
+                        update(ref(database, "user/" + data.uid), { uid: data.uid });  // Update the database with the uid
+                    }
+                    user.push(data);
+                });
+                addAllUserTable(user);
+            } else {
+                console.log("No data available");
+            }
+        }).catch((error) => {
+            console.log(error);
+        });
+    }
+
+
+      document.getElementById('search-input').addEventListener('keyup', function () {
+          let filter = this.value.toUpperCase();
+          let table = document.querySelector('table');
+          let tr = table.getElementsByTagName('tr');
+
+          for (let i = 1; i < tr.length; i++) {
+              let td = tr[i].getElementsByTagName('td');
+              let showRow = false;
+              for (let j = 0; j < td.length; j++) {
+                  if (td[j]) {
+                      let txtValue = td[j].textContent || td[j].innerText;
+                      if (txtValue.toUpperCase().indexOf(filter) > -1) {
+                          showRow = true;
+                          break;
+                      }
+                  }
+              }
+              if (showRow) {
+                  tr[i].style.display = "";
+              } else {
+                  tr[i].style.display = "none";
+              }
+          }
+      });
+
+      // Initialize Data Fetch
+      window.onload = getAllData();
+  </script>
+
+
+
+
+
+
+  <script>
+    document.addEventListener("DOMContentLoaded", function () {
+      const adminName = localStorage.getItem("adminUsername");
+      if (adminName) {
+        document.querySelector(".AdminName").textContent = adminName;
+      } else {
+        alert("No admin logged in.");
+        window.location.href = "login";
+      }
+      document.querySelector(".logout").addEventListener("click", function () {
+        localStorage.removeItem("adminUsername");
+        window.location.href = "login";
+      });
+    });
+  </script>
+</body>
+
+</html>

@@ -1,0 +1,163 @@
+/* Common styles */
+* {
+    font-family: 'Poppins', sans-serif;
+    box-sizing: border-box;
+    margin: 0;
+    padding: 0;
+    outline: none;
+    border: none;
+}
+
+img {
+    max-width: 100%;
+    height: auto;
+}
+
+body {
+    background:#E4DAA9;
+}
+
+
+.wrap-login {
+    width: 100%;
+    height: 100vh;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+
+.login {
+    width: 700px;
+    max-width: 700px;
+    margin: 0 auto;
+    padding: 50px;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+    background-color: #fff;
+}
+
+.login-title {
+    text-align: center;
+    font-weight: bold;
+    color: #797355;
+    text-transform: uppercase;
+}
+
+.login-content {
+    margin-top: 20px;
+}
+
+.login-box {
+    display: flex;
+    flex-direction: column;
+    margin-bottom: 15px;
+}
+
+.user-icon,
+.pw-icon {
+    width: 20px;
+    margin-right: 10px;
+}
+
+.login-box-input {
+    display: flex;
+    gap: 1em;
+    align-items: center;
+    justify-content: center;
+}
+
+.login-input {
+    width: 100%;
+    padding: 10px;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+    outline: none;
+}
+
+.login-input:focus {
+    border-color: #007bff;
+}
+
+.login-label {
+    position: absolute;
+    top: 50%;
+    transform: translateY(-50%);
+    left: 15px;
+    color: #999;
+    transition: all 0.3s ease;
+    pointer-events: none;
+}
+
+.error-message {
+    color: red;
+    font-size: small;
+}
+
+.login-button {
+    width: 100%;
+    padding: 10px;
+    background-color: rgb(18, 189, 166);
+    color: #fff;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    transition: background-color 0.3s ease;
+}
+
+.login-button:hover {
+    background-color: #0056b3;
+}
+
+.register-button {
+    width: 100%;
+    padding: 10px;
+    background-color: rgb(18, 189, 166);
+    color: #fff;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    transition: background-color 0.3s ease;
+}
+
+.register-button:hover {
+    background-color: #0056b3;
+}
+
+.login-register {
+    text-align: center;
+    margin-top: 15px;
+}
+
+
+/* Media Queries */
+
+/* For screens smaller than 1366px */
+@media (max-width: 1366px) {
+    .login {
+        width: 40%;
+    }
+}
+@media (max-width: 900px) {
+    .login {
+        width: 70%;
+    }
+
+}
+/* For screens smaller than 768px */
+@media (max-width: 768px) {
+    .login {
+        width: 60%;
+    }
+
+}
+
+/* For screens smaller than 450px */
+@media (max-width: 450px) {
+    .login {
+        width: 80%;
+    }
+    .login {
+        padding: 20px;
+    }
+}

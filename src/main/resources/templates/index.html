@@ -1,0 +1,276 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+
+<head>
+	<meta charset="UTF-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+	<!-- Boxicons -->
+	<link href='https://unpkg.com/boxicons@2.0.9/css/boxicons.min.css' rel='stylesheet'>
+	<link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet"
+		integrity="sha384-QWTKZyjpPEjISv5WaRU9OFeRpok6YctnYmDr5pNlyT2bRjXh0JMhjY6hW+ALEwIH" crossorigin="anonymous">
+	<link rel="stylesheet" href="css/style.css">
+	<link rel="icon" href="img/King_Culinary_Logo-removebg-preview copy.png" type="image/x-icon">
+	<title>AdminHub</title>
+</head>
+
+<body>
+
+
+	<!-- SIDEBAR -->
+    <section id="sidebar">
+        <a href="#" class="brand">
+            <i class='bx bxs-smile'></i>
+            <span class="text">KING CULINARY</span>
+        </a>
+		<a href="#" class="img-brand">
+            <img src="img/King_Culinary_Logo-removebg-preview.png">
+        </a>
+        <ul class="side-menu top">
+            <li>
+                <a href="dashboard" class="no-active">
+                    <i class='bx bxs-dashboard'></i>
+                    <span class="text">Dashboard</span>
+                </a>
+            </li>
+            <li>
+                <a href="categories" class="no-active">
+                    <i class='bx bxs-book-content'></i>
+                    <span class="text">Categories</span>
+                </a>
+            </li>
+            <li>
+                <a href="foodRecipe" class="no-active">
+                    <i class='bx bxs-food-menu'></i>
+                    <span class="text">Food Recipe</span>
+                </a>
+            </li>
+            <li>
+                <a href="comment" class="no-active">
+                    <i class='bx bxs-comment'></i>
+                    <span class="text">Comment</span>
+                </a>
+            </li>
+            <li>
+                <a href="user" class="no-active">
+                    <i class='bx bxs-user'></i>
+                    <span class="text">User</span>
+                </a>
+            </li>
+            <li>
+                <a href="resetPassword" class="no-active">
+                    <i class='bx bxs-user-circle'></i>
+                    <span class="text">Change Password </span>
+                </a>
+            </li>
+        </ul>
+        <ul class="side-menu">
+            <li>
+                <a href="login" class="logout">
+                    <i class='bx bx-log-in'></i>
+                    <span class="text">Logout</span>
+                </a>
+            </li>
+        </ul>
+    </section>
+	<!-- SIDEBAR -->
+	<!-- CONTENT -->
+	<section id="content">
+		<!-- NAVBAR -->
+		<nav>
+			<i class='bx bx-menu'></i>
+			<div class="hiAdmin">
+				<h5>Hi,</h5>
+				<h5 class="AdminName">Admin</h5>
+			</div>
+		</nav>
+		<!-- NAVBAR -->
+
+		<!-- MAIN -->
+		<main>
+			<div class="head-title">
+				<div class="left">
+					<h1>Dashboard</h1>
+					<ul class="breadcrumb">
+						<li>
+							<a href="#">Dashboard</a>
+						</li>
+						<li><i class='bx bx-chevron-right'></i></li>
+						<li>
+							<a class="active" href="#">Home</a>
+						</li>
+					</ul>
+				</div>
+			</div>
+
+			<ul class="box-info">
+				<li>
+					<i class='bx bxs-food-menu'></i>
+					<span class="text">
+						<h3 class="TotalFood">1020</h3>
+						<p>Food Recipe</p>
+					</span>
+				</li>
+				<li>
+					<i class='bx bxs-group'></i>
+					<span class="text">
+						<h3 class="TotalUser">2834</h3>
+						<p>Users</p>
+					</span>
+				</li>
+				<li>
+					<i class='bx bxs-comment'></i>
+					<span class="text">
+						<h3 class="TotalComment">$2543</h3>
+						<p>Comment</p>
+					</span>
+				</li>
+				<li>
+					<i class='bx bxs-category'></i>
+					<span class="text">
+						<h3 class="TotalCategory">$2543</h3>
+						<p>Category</p>
+					</span>
+				</li>
+				<!-- <li>
+					<i class='bx bxs-user-check'></i>
+					<span class="text">
+						<h3 class="TotalAdmin">$2543</h3>
+						<p>Admin</p>
+					</span>
+				</li> -->
+			</ul>
+		</main>
+		<!-- MAIN -->
+	</section>
+	<!-- CONTENT -->
+
+	<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"
+		integrity="sha384-YvpcrYf0tY3lHB60NNkmXc5s9fDVZLESaAA55NDzOxhy9GkcIdslK1eN7N6jIeHz"
+		crossorigin="anonymous"></script>
+	<script src="js/script.js"></script>
+	<script type="module">
+		// Import the functions you need from the SDKs you need
+		import { initializeApp } from "https://www.gstatic.com/firebasejs/10.12.2/firebase-app.js";
+		import { getDatabase, ref, set, get, child, update, remove, onValue } from "https://www.gstatic.com/firebasejs/10.12.2/firebase-database.js";
+
+		// Firebase configuration
+		const firebaseConfig = {
+			apiKey: "AIzaSyA2fKRX50046RzWGn4vkgxrLudMabAABlA",
+			authDomain: "kingculinarydb.firebaseapp.com",
+			databaseURL: "https://kingculinarydb-default-rtdb.asia-southeast1.firebasedatabase.app",
+			projectId: "kingculinarydb",
+			storageBucket: "kingculinarydb.appspot.com",
+			messagingSenderId: "1096190427358",
+			appId: "1:1096190427358:web:e3a3e53b14d5b4e18f0d14"
+		};
+
+		// Initialize Firebase
+		const app = initializeApp(firebaseConfig);
+		const database = getDatabase(app);
+
+		function getTotalCategories() {
+			const dbref = ref(database);
+			get(child(dbref, "category")).then((snapshot) => {
+				if (snapshot.exists()) {
+					const totalCategories = snapshot.size;
+					document.querySelector(".TotalCategory").textContent = totalCategories;
+				} else {
+					console.log("No data available");
+					document.querySelector(".TotalCategory").textContent = 0;
+				}
+			}).catch((error) => {
+				console.error("Error fetching data: ", error);
+				document.querySelector(".TotalCategory").textContent = 0;
+			});
+		}
+
+		// function getTotalAdmin() {
+		// 	const dbref = ref(database);
+		// 	get(child(dbref, "admin")).then((snapshot) => {
+		// 		if (snapshot.exists()) {
+		// 			const totalAdmin = snapshot.size;
+		// 			document.querySelector(".TotalAdmin").textContent = totalAdmin;
+		// 		} else {
+		// 			console.log("No data available");
+		// 			document.querySelector(".TotalAdmin").textContent = 0;
+		// 		}
+		// 	}).catch((error) => {
+		// 		console.error("Error fetching data: ", error);
+		// 		document.querySelector(".TotalAdmin").textContent = 0;
+		// 	});
+		// }
+
+		function getTotalRecipe() {
+			const dbref = ref(database);
+			get(child(dbref, "recipes")).then((snapshot) => {
+				if (snapshot.exists()) {
+					const totalRecipe = snapshot.size;
+					document.querySelector(".TotalFood").textContent = totalRecipe;
+				} else {
+					console.log("No data available");
+					document.querySelector(".TotalFood").textContent = 0;
+				}
+			}).catch((error) => {
+				console.error("Error fetching data: ", error);
+				document.querySelector(".TotalFood").textContent = 0;
+			});
+		}
+
+		function getTotalUser() {
+			const dbref = ref(database);
+			get(child(dbref, "user")).then((snapshot) => {
+				if (snapshot.exists()) {
+					const totalUser = snapshot.size;
+					document.querySelector(".TotalUser").textContent = totalUser;
+				} else {
+					console.log("No data available");
+					document.querySelector(".TotalUser").textContent = 0;
+				}
+			}).catch((error) => {
+				console.error("Error fetching data: ", error);
+				document.querySelector(".TotalUser").textContent = 0;
+			});
+		}
+
+		function getTotalComment() {
+			const dbref = ref(database);
+			get(child(dbref, "comment")).then((snapshot) => {
+				if (snapshot.exists()) {
+					const totalComment = snapshot.size;
+					document.querySelector(".TotalComment").textContent = totalComment;
+				} else {
+					console.log("No data available");
+					document.querySelector(".TotalComment").textContent = 0;
+				}
+			}).catch((error) => {
+				console.error("Error fetching data: ", error);
+				document.querySelector(".TotalComment").textContent = 0;
+			});
+		}
+
+		getTotalRecipe();
+		getTotalUser();
+		getTotalComment();
+		// getTotalAdmin();
+		getTotalCategories();
+
+	</script>
+	<script>
+		document.addEventListener("DOMContentLoaded", function () {
+			const adminName = localStorage.getItem("adminUsername");
+			if (adminName) {
+				document.querySelector(".AdminName").textContent = adminName;
+			} else {
+				alert("No admin logged in.");
+				window.location.href = "login";
+			}
+			document.querySelector(".logout").addEventListener("click", function () {
+				localStorage.removeItem("adminUsername");
+				window.location.href = "login";
+			});
+		});
+	</script>
+</body>
+
+</html>

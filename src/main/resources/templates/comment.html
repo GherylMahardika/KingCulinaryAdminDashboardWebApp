@@ -1,0 +1,637 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+	<meta charset="UTF-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+	<!-- Boxicons -->
+	<link href='https://unpkg.com/boxicons@2.0.9/css/boxicons.min.css' rel='stylesheet'>
+	<link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet"
+		integrity="sha384-QWTKZyjpPEjISv5WaRU9OFeRpok6YctnYmDr5pNlyT2bRjXh0JMhjY6hW+ALEwIH" crossorigin="anonymous">
+	<link rel="stylesheet" href="css/style.css">
+	<link rel="icon" href="img/King_Culinary_Logo-removebg-preview copy.png" type="image/x-icon">
+	<title>AdminHub</title>
+</head>
+
+<body>
+
+
+	<!-- SIDEBAR -->
+    <section id="sidebar">
+        <a href="#" class="brand">
+            <i class='bx bxs-smile'></i>
+            <span class="text">KING CULINARY</span>
+        </a>
+		<a href="#" class="img-brand">
+            <img src="img/King_Culinary_Logo-removebg-preview.png">
+        </a>
+        <ul class="side-menu top">
+            <li>
+                <a href="dashboard" class="no-active">
+                    <i class='bx bxs-dashboard'></i>
+                    <span class="text">Dashboard</span>
+                </a>
+            </li>
+            <li>
+                <a href="categories" class="no-active">
+                    <i class='bx bxs-book-content'></i>
+                    <span class="text">Categories</span>
+                </a>
+            </li>
+            <li>
+                <a href="foodRecipe" class="no-active">
+                    <i class='bx bxs-food-menu'></i>
+                    <span class="text">Food Recipe</span>
+                </a>
+            </li>
+            <li>
+                <a href="comment" class="no-active">
+                    <i class='bx bxs-comment'></i>
+                    <span class="text">Comment</span>
+                </a>
+            </li>
+            <li>
+                <a href="user" class="no-active">
+                    <i class='bx bxs-user'></i>
+                    <span class="text">User</span>
+                </a>
+            </li>
+            <li>
+                <a href="resetPassword" class="no-active">
+                    <i class='bx bxs-user-circle'></i>
+                    <span class="text">Change Password </span>
+                </a>
+            </li>
+        </ul>
+        <ul class="side-menu">
+            <li>
+                <a href="login" class="logout">
+                    <i class='bx bx-log-in'></i>
+                    <span class="text">Logout</span>
+                </a>
+            </li>
+        </ul>
+    </section>
+	<!-- SIDEBAR -->
+
+	<!-- CONTENT -->
+	<section id="content">
+		<!-- NAVBAR -->
+		<nav>
+			<i class='bx bx-menu'></i>
+			<div class="hiAdmin">
+				<h5>Hi,</h5>
+				<h5 class="AdminName">Admin</h5>
+			</div>
+		</nav>
+		<!-- NAVBAR -->
+
+		<!-- MAIN -->
+		<main>
+			<div class="head-title">
+				<div class="left">
+					<h1>Comment</h1>
+					<ul class="breadcrumb">
+						<li>
+							<!-- <button type="button" class="add-btn" data-bs-toggle="modal"
+								data-bs-target="#addCommentModal">
+								Add Comment
+							</button> -->
+
+							<!-- Add Comment Modal -->
+							<!-- Add Comment Modal -->
+							<!-- <div class="modal fade" id="addCommentModal" tabindex="-1"
+								aria-labelledby="addCommentModalLabel" aria-hidden="true">
+								<div class="modal-dialog">
+									<div class="modal-content">
+										<div class="modal-header">
+											<h1 class="modal-title fs-5" id="addCommentModalLabel">Add Comment</h1>
+											<button type="button" class="btn-close" data-bs-dismiss="modal"
+												aria-label="Close"></button>
+										</div>
+										<div class="modal-body">
+											<form id="comment-form">
+												<div class="mb-3">
+													<label for="recipe-select" class="form-label">Recipe</label>
+													<select class="form-select" id="recipe-select" required></select>
+													<div id="recipe-select-error" class="text-danger"></div>
+												</div>
+												<div class="mb-3">
+													<label for="user-select" class="form-label">User</label>
+													<select class="form-select" id="user-select" required></select>
+													<div id="user-select-error" class="text-danger"></div>
+												</div>
+												<div class="mb-3">
+													<label for="comment-text" class="form-label">Comment</label>
+													<input type="text" class="form-control" id="comment-text" required>
+													<div id="comment-text-error" class="text-danger"></div>
+												</div>
+											</form>
+										</div>
+										<div class="modal-footer">
+											<button type="button" class="btn btn-secondary"
+												data-bs-dismiss="modal">Close</button>
+											<button type="button" class="btn btn-primary" id="buttonAdd"
+												onclick="saveComment()">Save changes</button>
+										</div>
+									</div>
+								</div>
+							</div> -->
+
+							<!-- Edit Comment Modal -->
+							<!-- <div class="modal fade" id="editCommentModal" tabindex="-1"
+								aria-labelledby="addCommentModalLabel" aria-hidden="true">
+								<div class="modal-dialog">
+									<div class="modal-content">
+										<div class="modal-header">
+											<h1 class="modal-title fs-5" id="addCommentModalLabel">Edit Comment</h1>
+											<button type="button" class="btn-close" data-bs-dismiss="modal"
+												aria-label="Close"></button>
+										</div>
+										<div class="modal-body">
+											<form id="edit-comment-form">
+													<input type="hidden" class="form-control" id="edit-comment-id"
+														required readonly>
+													
+												<div class="mb-3">
+													<label for="edit-recipe-select" class="form-label">Recipe</label>
+													<select class="form-select" id="edit-recipe-select"
+														required></select>
+													<div id="edit-recipe-select-error" class="text-danger"></div>
+												</div>
+												<div class="mb-3">
+													<label for="edit-user-select" class="form-label">User</label>
+													<select class="form-select" id="edit-user-select" required readonly></select>
+													<div id="edit-user-select-error" class="text-danger"></div>
+												</div>
+												<div class="mb-3">
+													<label for="edit-comment-text" class="form-label">Comment</label>
+													<input type="text" class="form-control" id="edit-comment-text"
+														required>
+													<div id="edit-comment-text-error" class="text-danger"></div>
+												</div>
+											</form>
+										</div>
+										<div class="modal-footer">
+											<button type="button" class="btn btn-secondary"
+												data-bs-dismiss="modal">Close</button>
+											<button type="button" class="btn btn-primary" id="buttonEdit">Save
+												changes</button>
+										</div>
+									</div>
+								</div>
+							</div> -->
+
+						</li>
+					</ul>
+				</div>
+			</div>
+
+			<div class="table-data">
+				<div class="order">
+					<div class="head">
+						<h3>Comments</h3>
+						<div class="search-wrapper">
+							<input type="text" id="search-input" placeholder="Search ">
+							<i class='bx bx-search'></i>
+						</div>
+					</div>
+					<table>
+						<thead>
+							<tr>
+								<th>Comment ID</th>
+								<th>Recipe</th>
+								<th>User</th>
+								<th>Comment</th>
+								<th>Created At</th>
+								<th>Actions</th>
+							</tr>
+						</thead>
+						<tbody id="commentTableBody">
+							<!-- Comment rows will be populated here dynamically -->
+						</tbody>
+					</table>
+				</div>
+			</div>
+		</main>
+		<!-- MAIN -->
+	</section>
+	<!-- CONTENT -->
+
+	<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"
+		integrity="sha384-YvpcrYf0tY3lHB60NNkmXc5s9fDVZLESaAA55NDzOxhy9GkcIdslK1eN7N6jIeHz"
+		crossorigin="anonymous"></script>
+	<script src="https://www.gstatic.com/firebasejs/10.12.2/firebase-app.js"></script>
+	<script src="https://www.gstatic.com/firebasejs/10.12.2/firebase-database.js"></script>
+	<script type="module">
+		// Import the functions you need from the SDKs you need
+		import { initializeApp } from "https://www.gstatic.com/firebasejs/10.12.2/firebase-app.js";
+		import { getDatabase, push, ref, set, get, child, update, remove, onValue, serverTimestamp } from "https://www.gstatic.com/firebasejs/10.12.2/firebase-database.js";
+	
+		// Your web app's Firebase configuration
+		const firebaseConfig = {
+			apiKey: "AIzaSyA2fKRX50046RzWGn4vkgxrLudMabAABlA",
+			authDomain: "kingculinarydb.firebaseapp.com",
+			databaseURL: "https://kingculinarydb-default-rtdb.asia-southeast1.firebasedatabase.app",
+			projectId: "kingculinarydb",
+			storageBucket: "kingculinarydb.appspot.com",
+			messagingSenderId: "1096190427358",
+			appId: "1:1096190427358:web:e3a3e53b14d5b4e18f0d14"
+		};
+	
+		// Initialize Firebase
+		const app = initializeApp(firebaseConfig);
+		const database = getDatabase(app);
+	
+		let userMap = {};
+		let recipeMap = {};
+	
+		// function fetchAddRecipe() {
+		// 	const recipeSelect = document.getElementById('recipe-select');
+
+		// 	if (!recipeSelect) {
+		// 		console.error('Recipe select element not found');
+		// 		return;
+		// 	}
+
+		// 	console.log('Fetching Recipes...');
+		// 	get(child(ref(database), 'recipes')).then(snapshot => {
+		// 		if (snapshot.exists()) {
+		// 			console.log('Recipes fetched successfully');
+		// 			snapshot.forEach(childSnapshot => {
+		// 				console.log('Adding recipe:', childSnapshot.val().recipeName);
+		// 				let option = document.createElement('option');
+		// 				option.value = childSnapshot.key; // Store the recipe ID
+		// 				option.textContent = childSnapshot.val().recipeName;
+		// 				recipeSelect.appendChild(option);
+		// 			});
+		// 		} else {
+		// 			console.log('No recipe found');
+		// 		}
+		// 	}).catch(error => {
+		// 		console.error('Error fetching recipe:', error);
+		// 	});
+		// }
+
+	
+		// function fetchRecipesEdit() {
+		// 	const recipeSelect = document.getElementById('edit-recipe-select');
+
+		// 	if (!recipeSelect) {
+		// 		console.error('Recipe select element not found');
+		// 		return;
+		// 	}
+
+		// 	console.log('Fetching recipes...');
+		// 	get(child(ref(database), 'recipes')).then(snapshot => {
+		// 		if (snapshot.exists()) {
+		// 			console.log('Recipes fetched successfully');
+		// 			snapshot.forEach(childSnapshot => {
+		// 				console.log('Adding recipe:', childSnapshot.val().recipeName);
+		// 				let option = document.createElement('option');
+		// 				option.value = childSnapshot.key; // Store the recipe ID
+		// 				option.textContent = childSnapshot.val().recipeName;
+		// 				recipeSelect.appendChild(option);
+		// 			});
+		// 		} else {
+		// 			console.log('No recipes found');
+		// 		}
+		// 	}).catch(error => {
+		// 		console.error('Error fetching recipes:', error);
+		// 	});
+		// }
+
+	
+		// function fetchAddUser() {
+		// 	const userSelect = document.getElementById('user-select');
+
+		// 	if (!userSelect) {
+		// 		console.error('User select element not found');
+		// 		return;
+		// 	}
+
+		// 	console.log('Fetching users...');
+		// 	get(child(ref(database), 'user')).then(snapshot => {
+		// 		if (snapshot.exists()) {
+		// 			console.log('Users fetched successfully');
+		// 			snapshot.forEach(childSnapshot => {
+		// 				console.log('Adding user:', childSnapshot.val().username);
+		// 				let option = document.createElement('option');
+		// 				option.value = childSnapshot.key; // Store the user ID
+		// 				option.textContent = childSnapshot.val().username;
+		// 				userSelect.appendChild(option);
+		// 			});
+		// 		} else {
+		// 			console.log('No user found');
+		// 		}
+		// 	}).catch(error => {
+		// 		console.error('Error fetching users:', error);
+		// 	});
+		// }
+
+	
+		// function fetchUserEdit() {
+		// 	const userSelect = document.getElementById('edit-user-select');
+
+		// 	if (!userSelect) {
+		// 		console.error('User select element not found');
+		// 		return;
+		// 	}
+
+		// 	console.log('Fetching users...');
+		// 	get(child(ref(database), 'user')).then(snapshot => {
+		// 		if (snapshot.exists()) {
+		// 			console.log('Users fetched successfully');
+		// 			snapshot.forEach(childSnapshot => {
+		// 				console.log('Adding user:', childSnapshot.val().username);
+		// 				let option = document.createElement('option');
+		// 				option.value = childSnapshot.key; // Store the user ID
+		// 				option.textContent = childSnapshot.val().username;
+		// 				userSelect.appendChild(option);
+		// 			});
+		// 		} else {
+		// 			console.log('No users found');
+		// 		}
+		// 	}).catch(error => {
+		// 		console.error('Error fetching users:', error);
+		// 	});
+		// }
+	
+		// Add Comment
+		// document.getElementById("buttonAdd").addEventListener("click", function () {
+		// 	let recipeId = document.getElementById("recipe-select").value;
+		// 	let userId = document.getElementById("user-select").value;
+		// 	let commentText = document.getElementById("comment-text").value;
+		// 	// let timestamp = document.getElementById("created-at").value;
+
+		// 	let isValid = validateForm(recipeId, userId, commentText);
+
+		// 	if (isValid) {
+		// 			set(push(ref(database, "comment/")), {
+		// 				recipeId: recipeId,
+		// 				userId: userId,
+		// 				commentText: commentText,
+		// 				timestamp: serverTimestamp()
+		// 			}).then(() => {
+		// 				alert("Comment Successfully Added!");
+		// 				getAllData(); // Refresh the table data
+		// 			}).catch((error) => {
+		// 				alert("Failed to add comment!");
+		// 				console.log(error);
+		// 			});
+
+		// 			// Close the modal
+		// 			const modal = bootstrap.Modal.getInstance(document.getElementById('addCommentModal'));
+		// 			modal.hide();
+		// 	}
+		// });
+
+	
+		// // Edit Comment
+		// document.getElementById("buttonEdit").addEventListener("click", function () {
+		// 	let commentId = document.getElementById("edit-comment-id").value;
+		// 	let recipeId = document.getElementById("edit-recipe-select").value;
+		// 	let userId = document.getElementById("edit-user-select").value;
+		// 	let commentText = document.getElementById("edit-comment-text").value;
+		// 	// let timestamp = document.getElementById("edit-created-at").value;
+
+		// 	let isValid = validateForm(recipeId, userId, commentText);
+
+		// 	if (isValid) {
+		// 		update(ref(database, "comment/" + commentId), {
+		// 			userId: userId,
+		// 			commentText: commentText
+		// 		}).then(() => {
+		// 			alert("Comment Successfully Updated!");
+		// 			getAllData(); // Refresh the table data
+		// 		}).catch((error) => {
+		// 			alert("Failed to update comment!");
+		// 			console.log(error);
+		// 		});
+
+		// 		// Close the modal
+		// 		const modal = bootstrap.Modal.getInstance(document.getElementById('editCommentModal'));
+		// 		modal.hide();
+		// 	}
+		// });
+
+	
+		// Validation function
+		function validateForm(recipeId, userId, commentText) {
+			let isValid = true;
+	
+			if (!recipeId) {
+				document.getElementById('recipe-select-error').innerText = "Recipe is required.";
+				isValid = false;
+			} else {
+				document.getElementById('recipe-select-error').innerText = "";
+			}
+	
+			if (!userId) {
+				document.getElementById('user-select-error').innerText = "User is required.";
+				isValid = false;
+			} else {
+				document.getElementById('user-select-error').innerText = "";
+			}
+	
+			if (!commentText) {
+				document.getElementById('comment-text-error').innerText = "Comment text is required.";
+				isValid = false;
+			} else {
+				document.getElementById('comment-text-error').innerText = "";
+			}
+	
+			// if (!timestamp) {
+			// 	document.getElementById('created-at-error').innerText = "Created date is required.";
+			// 	isValid = false;
+			// } else {
+			// 	document.getElementById('created-at-error').innerText = "";
+			// }
+	
+			return isValid;
+		}
+	
+		// Delete comment
+		function deleteComment(commentId) {
+			remove(ref(database, "comment/" + commentId)).then(() => {
+				// Data deleted successfully
+				alert("Comment Successfully Deleted!");
+				getAllData(); // Refresh the table data
+			}).catch((error) => {
+				alert("Failed to delete Comment!");
+				console.log(error);
+			});
+		}
+	
+		// Add comment Table Item
+		function addCommentTableItem(uid, recipeId, userId, commentText, timestamp) {
+			let trow = document.createElement("tr");
+			let td1 = document.createElement("td");
+			let td2 = document.createElement("td");
+			let td3 = document.createElement("td");
+			let td4 = document.createElement("td");
+			let td5 = document.createElement("td");
+			let td6 = document.createElement("td");
+	
+			td1.innerHTML = uid;
+			td2.innerHTML = recipeMap[recipeId] || recipeId; // Convert recipeId to recipe name
+			td3.innerHTML = userMap[userId] || userId; // Convert userId to username
+			td4.innerHTML = commentText;
+			td5.innerHTML = timestamp;
+	
+			// Create the Edit button
+			// let editButton = document.createElement("button");
+			// editButton.innerHTML = "Edit";
+			// editButton.classList.add("btn-edit");
+			// editButton.setAttribute("data-bs-toggle", "modal");
+			// editButton.setAttribute("data-bs-target", "#editCommentModal");
+			// editButton.onclick = function () {
+			// 	document.getElementById("edit-comment-id").value = uid;
+			// 	document.getElementById("edit-recipe-select").value = recipeId;
+			// 	document.getElementById("edit-user-select").value = userId;
+			// 	document.getElementById("edit-comment-text").value = commentText;
+			// 	document.getElementById("edit-created-at").value = timestamp;
+			// };
+	
+			// Create the Delete button
+			let deleteButton = document.createElement("button");
+			deleteButton.innerHTML = "Delete";
+			deleteButton.classList.add("btn-del");
+			deleteButton.onclick = function () {
+				if (confirm("Are you sure you want to delete this comment?")) {
+					deleteComment(uid); // Call delete function
+					trow.remove(); // This line will remove the row from the table
+				}
+			};
+	
+			// td6.appendChild(editButton);
+			td6.appendChild(deleteButton);
+	
+			trow.appendChild(td1);
+			trow.appendChild(td2);
+			trow.appendChild(td3);
+			trow.appendChild(td4);
+			trow.appendChild(td5);
+			trow.appendChild(td6);
+	
+			document.getElementById("commentTableBody").appendChild(trow);
+		}
+	
+		function addAllCommentTable(comment) {
+			// Sort by createdAt descending
+			comment.sort((a, b) => new Date(b.timestamp) - new Date(a.timestamp));
+	
+			document.getElementById("commentTableBody").innerHTML = "";
+			comment.forEach(element => {
+				addCommentTableItem(element.uid, element.recipeId, element.userId, element.commentText, element.timestamp);
+			});
+		}
+	
+		// Fetch User Map
+		function fetchUserMap() {
+			return get(child(ref(database), 'user')).then(snapshot => {
+				if (snapshot.exists()) {
+					snapshot.forEach(childSnapshot => {
+						userMap[childSnapshot.key] = childSnapshot.val().username;
+					});
+				} else {
+					console.log('No users found');
+				}
+			}).catch(error => {
+				console.error('Error fetching users:', error);
+			});
+		}
+	
+		// Fetch Recipe Map
+		function fetchRecipeMap() {
+			return get(child(ref(database), 'recipes')).then(snapshot => {
+				if (snapshot.exists()) {
+					snapshot.forEach(childSnapshot => {
+						recipeMap[childSnapshot.key] = childSnapshot.val().recipeName;
+					});
+				} else {
+					console.log('No recipes found');
+				}
+			}).catch(error => {
+				console.error('Error fetching recipes:', error);
+			});
+		}
+	
+		// Fetch All comments from Firebase
+		function getAllData() {
+			const dbref = ref(database);
+			get(child(dbref, "comment")).then((snapshot) => {
+				if (snapshot.exists()) {
+					var comment = [];
+					snapshot.forEach(childSnapshot => {
+						var com = childSnapshot.val();
+						// Ensure each entry has a UID
+						com.uid = childSnapshot.key;
+						comment.push(com);
+					});
+					addAllCommentTable(comment);
+				} else {
+					console.log("No data available");
+				}
+			}).catch((error) => {
+				console.log(error);
+			});
+		}
+	
+		document.getElementById('search-input').addEventListener('keyup', function () {
+			let filter = this.value.toUpperCase();
+			let table = document.querySelector('table');
+			let tr = table.getElementsByTagName('tr');
+	
+			for (let i = 1; i < tr.length; i++) {
+				let td = tr[i].getElementsByTagName('td');
+				let showRow = false;
+				for (let j = 0; j < td.length; j++) {
+					if (td[j]) {
+						let txtValue = td[j].textContent || td[j].innerText;
+						if (txtValue.toUpperCase().indexOf(filter) > -1) {
+							showRow = true;
+							break;
+						}
+					}
+				}
+				if (showRow) {
+					tr[i].style.display = "";
+				} else {
+					tr[i].style.display = "none";
+				}
+			}
+		});
+	
+		// Initialize Data Fetch
+		window.onload = function () {
+			Promise.all([fetchUserMap(), fetchRecipeMap()]).then(() => {
+				getAllData();
+				fetchAddRecipe();
+				fetchRecipesEdit();
+				fetchAddUser();
+				fetchUserEdit();
+			});
+		};
+	</script>
+	
+	<script src="js/script.js"></script>
+	<script>
+		document.addEventListener("DOMContentLoaded", function () {
+			const adminName = localStorage.getItem("adminUsername");
+			if (adminName) {
+				document.querySelector(".AdminName").textContent = adminName;
+			} else {
+				alert("No admin logged in.");
+				window.location.href = "login";
+			}
+			document.querySelector(".logout").addEventListener("click", function () {
+				localStorage.removeItem("adminUsername");
+				window.location.href = "login";
+			});
+		});
+	</script>
+</body>
+
+</html>
